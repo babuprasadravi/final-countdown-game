@@ -4,13 +4,14 @@ import { useRef, useState } from "react"
 export default function Challenges({title , challengeTime}){
     const timer = useRef()
     const dialog = useRef()
+
     const [timeRemaining , setTimeRemaining] = useState(challengeTime*1000);
 
     const isActive = timeRemaining > 0 && timeRemaining < challengeTime*1000;
 
     if(timeRemaining <= 0){
         clearInterval(timer.current);
-        dialog.current.showModal();
+        dialog.current.open();
     }
 
     const resetTime = () => {
@@ -24,7 +25,7 @@ export default function Challenges({title , challengeTime}){
     }
 
     function handleStop(){
-        dialog.current.showModal();
+        dialog.current.open();
         clearInterval(timer.current);
     }
 
